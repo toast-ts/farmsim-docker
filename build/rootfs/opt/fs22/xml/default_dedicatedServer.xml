@@ -3,7 +3,7 @@
     <webserver port="7999">
         <initial_admin>
             <username>admin</username>
-            <passphrase>webpassword</passphrase>
+            <passphrase>password</passphrase>
         </initial_admin>
         <tls port="8443" active="false">
             <certificate>cert.pem</certificate>

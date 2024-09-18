@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=WebServer
-Comment=Run WebServer
+Name=Setup
+Comment=Run setup
 Icon=/home/nobody/icons/icon0.jpg
 Exec=lxterminal --command="/bin/bash -c '/opt/fs22/setup_giants.sh'"
 Terminal=false

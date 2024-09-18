@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=WebServer
-Comment=Run WebServer
+Name=Webserver
+Comment=Run Webserver
 Icon=/home/nobody/icons/icon1.jpg
 Exec=/opt/fs22/start_webserver.sh
 Terminal=false

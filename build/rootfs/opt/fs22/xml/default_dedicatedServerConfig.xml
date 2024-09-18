@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <gameserver>
     <settings>
-        <game_name></game_name>
+        <game_name>Dedi Server</game_name>
         <admin_password></admin_password>
         <game_password></game_password>
         <savegame_index>1</savegame_index>
-        <max_player>12</max_player>
+        <max_player>16</max_player>
         <port>10823</port>
         <language>en</language>
         <auto_save_interval>180.000000</auto_save_interval>
-        <stats_interval>360.000000</stats_interval>
+        <stats_interval>45.000000</stats_interval>
         <use_upnp>false</use_upnp>
         <crossplay_allowed>true</crossplay_allowed>
         <difficulty>3</difficulty>
