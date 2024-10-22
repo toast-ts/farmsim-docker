@@ -8,7 +8,7 @@ We will be using `/opt/fs22` as the default path.
 1. Obtain a copy of the game ([GIANTS eShop](https://www.farming-simulator.com/buy-now.php?platform=pcdigital))
    - Download the ZIP archive, not the `.iso` version.
 2. Prepare directories on the host
-   - 1. `$ sudo mkdir -p /opt/fs22/{config,game,install,dlc}`
+   - 1. `$ sudo mkdir -p /opt/fs22/{config,game,install,dlc,logs}`
    - 2. `$ sudo chown -R user:group /opt/fs22`
 3. Obtain the UID and GID from `id` command (default is `1000`)
    - This is a requirement as you will be passing that to the [docker-compose.yml](./docker-compose.yml)

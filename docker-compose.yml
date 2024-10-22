@@ -15,6 +15,7 @@ services:
       - /opt/fs22/game:/opt/fs22/game
       - /opt/fs22/dlc:/opt/fs22/dlc
       - /opt/fs22/install:/opt/fs22/install
+      - /opt/fs22/logs:/opt/fs22/logs
     ports:
       - 5900:5900/tcp # VNC
       - 8080:8080/tcp # Webinterface

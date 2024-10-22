@@ -1,9 +1,9 @@
 FROM toetje585/arch-wine-vnc:latest
-LABEL org.opencontainers.image.source = "https://github.com/toast-ts/farmsim-docker"
+LABEL org.opencontainers.image.source="https://github.com/toast-ts/farmsim-docker"
 
 COPY build/rootfs /
 RUN chown -R nobody:nobody /home/*
-ADD build/install.sh /root/install.sh
+COPY build/install.sh /root/install.sh
 
 # install script
 ##################
