@@ -3,3 +3,6 @@ fs22
 
 # Local version of GitHub Actions
 act
+
+# My copy of docker-compose so I don't have to accidentally commit the changes
+compose.farmsim.yml

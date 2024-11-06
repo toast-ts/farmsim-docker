@@ -1,7 +1,7 @@
 services:
   gameserver:
     image: ghcr.io/toast-ts/farmsim-docker:master
-    container_name: fs22-game
+    container_name: fs22-server
     restart: unless-stopped
     environment:
       - VNC_PASSWORD=vnc_pw
@@ -19,6 +19,7 @@ services:
     ports:
       - 5900:5900/tcp # VNC
       - 8080:8080/tcp # Webinterface
-      - 10823:10823/udp # Game
+      - 10823:10823/udp # Game (UDP)
+      - 10823:10823/tcp # Game<-->GIANTS (from what I'm told anyway)
     cap_add:
       - SYS_NICE
