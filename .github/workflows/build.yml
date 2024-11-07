@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - fs22
   pull_request:
 
 concurrency:
