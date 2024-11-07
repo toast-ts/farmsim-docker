@@ -21,7 +21,7 @@ FARMSIM_DOCS_HOST="/opt/fs22/docs/FarmingSimulator2022"
 FARMSIM_DOCS_WINE_PARENT="$WINEPREFIX/drive_c/users/$USER/Documents/My Games"
 FARMSIM_DOCS_WINE="$FARMSIM_DOCS_WINE_PARENT/FarmingSimulator2022"
 FARMSIM_DEDI_SOFTWARE="$FARMSIM_INSTALL_WINE/dedicatedServer.exe"
-FARMSIM_DEDI_XML_HOST="/opt/fs22/xml"
+FARMSIM_DEDI_XML="/opt/fs22/xml"
 HOST_LOGFOLDER="/opt/fs22/logs"
 
 # Clear Tinyproxy log prior to starting the webinterface
@@ -46,7 +46,7 @@ fi
 # Copy webserver config..
 if [ ! -f "$FARMSIM_INSTALL_WINE/dedicatedServer.xml" ]; then
   echo -e "${GREEN}INFO: Copying the webserver config!${NOCOLOR}"
-  cp "$FARMSIM_DEDI_XML_HOST/default_dedicatedServer.xml" "$FARMSIM_INSTALL_WINE/dedicatedServer.xml"
+  cp "$FARMSIM_DEDI_XML/default_dedicatedServer.xml" "$FARMSIM_INSTALL_WINE/dedicatedServer.xml"
 else
   echo -e "${GREEN}INFO: Webserver config already exists! Skipping..${NOCOLOR}"
 fi
@@ -54,7 +54,7 @@ fi
 # Copy server config
 if [ ! -f "$FARMSIM_DOCS_WINE/dedicated_server/dedicatedServerConfig.xml" ]; then
   echo -e "${GREEN}INFO: Copying the server config!${NOCOLOR}"
-  cp "$FARMSIM_DEDI_XML_HOST/default_dedicatedServerConfig.xml" "$FARMSIM_DOCS_WINE/dedicated_server/dedicatedServerConfig.xml"
+  cp "$FARMSIM_DEDI_XML/default_dedicatedServerConfig.xml" "$FARMSIM_DOCS_WINE/dedicated_server/dedicatedServerConfig.xml"
 else
   echo -e "${GREEN}INFO: Server config already exists! Skipping..${NOCOLOR}"
 fi
