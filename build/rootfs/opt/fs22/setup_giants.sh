@@ -7,8 +7,17 @@ export WINEARCH=win64
 export USER=nobody
 
 # Variable to make things easier
-FARMSIM_DOCS="$WINEPREFIX/drive_c/users/$USER/Documents/My Games/FarmingSimulator2022"
+FARMSIM_DOCS_PARENT="$WINEPREFIX/drive_c/users/$USER/Documents/My Games"
+FARMSIM_DOCS="$FARMSIM_DOCS_PARENT/FarmingSimulator2022"
 FARMSIM_INSTALL="$WINEPREFIX/drive_c/Program Files (x86)/Farming Simulator 2022"
+FARMSIM_EXECUTABLE="$FARMSIM_INSTALL/FarmingSimulator2022.exe"
+
+# Paths on filesystem
+DOCS_PATH="/opt/fs22/docs/FarmingSimulator2022"
+DLC_PATH="/opt/fs22/dlc"
+GAME_PATH="/opt/fs22/game"
+INSTALLER_PATH="/opt/fs22/install/FarmingSimulator2022.exe"
+DESKTOP_ICONS="~/Desktop/Farming\ Simulator\ 22\ .*"
 
 # Debug info/warning/error color
 
@@ -30,7 +39,7 @@ check_dlc_installer() {
   local dlc_name=$1
   local installer_pattern=$2
 
-  if ls /opt/fs22/dlc/${installer_pattern} 1> /dev/null 2>&1; then
+  if ls $DLC_PATH/${installer_pattern} 1> /dev/null 2>&1; then
     echo -e "${GREEN}INFO: ${dlc_name} setup found!${NOCOLOR}"
   else
     echo -e "${YELLOW}WARNING: ${dlc_name} setup not found, does it exist in the dlc mount path?${NOCOLOR}"
@@ -82,18 +91,18 @@ done
 
 # it's important to check if the config directory exists on the host mount path. If it doesn't exist, create it.
 
-if [ -d /opt/fs22/config/FarmingSimulator2022 ]; then
+if [ -d $DOCS_PATH ]; then
   echo -e "${GREEN}INFO: The host config directory exists, no need to create it!${NOCOLOR}"
 else
-  mkdir -p /opt/fs22/config/FarmingSimulator2022
+  mkdir -p $DOCS_PATH
 fi
 
 # Symlink the host game path inside the wine prefix to preserve the installation on image deletion or update.
 
-if [ -d "/opt/fs22/game/Farming Simulator 2022" ]; then
-  ln -s "/opt/fs22/game/Farming Simulator 2022" "$FARMSIM_INSTALL"
+if [ -d "$GAME_PATH" ]; then
+  ln -s "$GAME_PATH" "$FARMSIM_INSTALL"
 else
-  mkdir -p "/opt/fs22/game/Farming Simulator 2022" && ln -s "/opt/fs22/game/Farming Simulator 2022" "$FARMSIM_INSTALL"
+  mkdir -p "$GAME_PATH" && ln -s "$GAME_PATH" "$FARMSIM_INSTALL"
 fi
 
 # Symlink the host config path inside the wine prefix to preserver the config files on image deletion or update.
@@ -101,7 +110,7 @@ fi
 if [ -d "$FARMSIM_DOCS" ]; then
   echo -e "${GREEN}INFO: The symlink is already in place, no need to create one!${NOCOLOR}"
 else
-  mkdir -p "$WINEPREFIX/drive_c/users/$USER/Documents/My Games" && ln -s /opt/fs22/config/FarmingSimulator2022 "$FARMSIM_DOCS"
+  mkdir -p "$FARMSIM_DOCS_PARENT" && ln -s "$DOCS_PATH" "$FARMSIM_DOCS"
 fi
 
 if [ -d "$FARMSIM_DOCS/dedicated_server/logs" ]; then
@@ -110,17 +119,17 @@ else
   mkdir -p $FARMSIM_DOCS/dedicated_server/logs
 fi
 
-if [ -f "$FARMSIM_INSTALL/FarmingSimulator2022.exe" ]; then
+if [ -f "$FARMSIM_EXECUTABLE" ]; then
   echo -e "${GREEN}INFO: Game already installed, we can skip the installer!${NOCOLOR}"
 else
-  wine "/opt/fs22/install/FarmingSimulator2022.exe"
+  wine "$INSTALLER_PATH"
 fi
 
 # Cleanup Desktop
 
 if [ -f ~/Desktop/ ]
 then
-  rm -r "~/Desktop/Farming\ Simulator\ 22\ .*"
+  rm -r "$DESKTOP_ICONS"
 else
   echo -e "${GREEN}INFO: Nothing to cleanup!${NOCOLOR}"
 fi
@@ -132,7 +141,7 @@ if [ $count != 0 ]
 then
   echo -e "${GREEN}INFO: Generating the game license files as needed!${NOCOLOR}"
 else
-  wine "$FARMSIM_INSTALL/FarmingSimulator2022.exe"
+  wine "$FARMSIM_EXECUTABLE"
 fi
 
 count=`ls -1 "$FARMSIM_DOCS/*.dat" 2>/dev/null | wc -l`
@@ -154,9 +163,9 @@ install_dlc() {
   then
     echo -e "${GREEN}INFO: ${dlc_name} already exists!${NOCOLOR}"
   else
-    if ls /opt/fs22/dlc/${exe_pattern} 1> /dev/null 2>&1; then
+    if ls $DLC_PATH/${exe_pattern} 1> /dev/null 2>&1; then
       echo -e "${GREEN}INFO: Installing ${dlc_name}!${NOCOLOR}"
-      for i in /opt/fs22/dlc/${exe_pattern}; do wine "$i"; done
+      for i in $DLC_PATH/${exe_pattern}; do wine "$i"; done
       echo -e "${GREEN}INFO: ${dlc_name} is now installed!${NOCOLOR}"
     fi
   fi
@@ -177,7 +186,7 @@ else
 fi
 
 echo -e "${YELLOW}INFO: Checking for updates, if you get warning about GPU drivers make sure to click no!${NOCOLOR}"
-wine $FARMSIM_INSTALL/FarmingSimulator2022.exe
+wine $FARMSIM_EXECUTABLE
 
 echo -e "${YELLOW}INFO: All done, closing this window in 15 seconds...${NOCOLOR}"
 
