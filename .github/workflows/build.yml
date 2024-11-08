@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - fs22
+      - fs25
   pull_request:
 
 concurrency:
