@@ -1,7 +1,7 @@
 services:
   gameserver:
     image: ghcr.io/toast-ts/farmsim-docker:master
-    container_name: fs22-server
+    container_name: fs25-server
     restart: unless-stopped
     environment:
       - VNC_PASSWORD=vnc_pw
@@ -11,11 +11,11 @@ services:
       - WEB_PASSWORD=admin_pw
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /opt/fs22/docs:/opt/fs22/docs
-      - /opt/fs22/game:/opt/fs22/game
-      - /opt/fs22/dlc:/opt/fs22/dlc
-      - /opt/fs22/install:/opt/fs22/install
-      - /opt/fs22/logs:/opt/fs22/logs
+      - /opt/fs25/docs:/opt/fs25/docs
+      - /opt/fs25/game:/opt/fs25/game
+      - /opt/fs25/dlc:/opt/fs25/dlc
+      - /opt/fs25/install:/opt/fs25/install
+      - /opt/fs25/logs:/opt/fs25/logs
     ports:
       - 5900:5900/tcp # VNC
       - 8080:8080/tcp # Webinterface

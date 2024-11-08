@@ -15,14 +15,14 @@ NOCOLOR='\033[0;0m'
 wine wineboot
 
 # Define the game installation directories on both the host and wine side
-FARMSIM_INSTALL_HOST="/opt/fs22/game"
-FARMSIM_INSTALL_WINE="$WINEPREFIX/drive_c/Program Files (x86)/Farming Simulator 2022"
-FARMSIM_DOCS_HOST="/opt/fs22/docs/FarmingSimulator2022"
+FARMSIM_INSTALL_HOST="/opt/fs25/game"
+FARMSIM_INSTALL_WINE="$WINEPREFIX/drive_c/Program Files (x86)/Farming Simulator 2025"
+FARMSIM_DOCS_HOST="/opt/fs25/docs"
 FARMSIM_DOCS_WINE_PARENT="$WINEPREFIX/drive_c/users/$USER/Documents/My Games"
-FARMSIM_DOCS_WINE="$FARMSIM_DOCS_WINE_PARENT/FarmingSimulator2022"
+FARMSIM_DOCS_WINE="$FARMSIM_DOCS_WINE_PARENT/FarmingSimulator2025"
 FARMSIM_DEDI_SOFTWARE="$FARMSIM_INSTALL_WINE/dedicatedServer.exe"
-FARMSIM_DEDI_XML="/opt/fs22/xml"
-HOST_LOGFOLDER="/opt/fs22/logs"
+FARMSIM_DEDI_XML="/opt/fs25/xml"
+HOST_LOGFOLDER="/opt/fs25/logs"
 
 # Clear Tinyproxy log prior to starting the webinterface
 echo -e "${GREEN}INFO: Clearing Tinyproxy log..${NOCOLOR}"
