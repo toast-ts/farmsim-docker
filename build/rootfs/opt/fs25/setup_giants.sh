@@ -185,7 +185,7 @@ else
   echo -e "${RED}ERROR: We are missing files?${NOCOLOR}" && exit
 fi
 
-echo -e "${YELLOW}INFO: Checking for updates, if you get warning about GPU drivers make sure to click no!${NOCOLOR}"
+echo -e "${YELLOW}INFO: Checking for updates, if you get warning about 'Shader Model 4.0', ignore it${NOCOLOR}"
 wine $FARMSIM_EXECUTABLE
 
 echo -e "${YELLOW}INFO: All done, closing this window in 15 seconds...${NOCOLOR}"

@@ -1,0 +1,1 @@
+This folder (vnc-image) was created because the author of arch-wine-vnc has been yanked from DockerHub registry.

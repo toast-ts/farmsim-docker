@@ -3,7 +3,7 @@ Encoding=UTF-8
 Name=Setup
 Comment=Run setup
 Icon=/home/nobody/icons/icon0.jpg
-Exec=lxterminal --command="/bin/bash -c '/opt/fs22/setup_giants.sh'"
+Exec=lxterminal --command="/bin/bash -c '/opt/fs25/setup_giants.sh'"
 Terminal=false
 Type=Application
 Name[en_US]=Setup

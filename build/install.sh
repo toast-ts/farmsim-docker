@@ -28,11 +28,11 @@ cat <<'EOF' > /tmp/envvars_heredoc
 # Webserver
 
 if [ -n "$WEB_USERNAME" ]; then
-  sed -i "s/<username>admin<\/username>/<username>$WEB_USERNAME<\/username>/" /opt/fs22/xml/default_dedicatedServer.xml
+  sed -i "s/<username>admin<\/username>/<username>$WEB_USERNAME<\/username>/" /opt/fs25/xml/default_dedicatedServer.xml
 fi
 
 if [ -n "$WEB_PASSWORD" ]; then
-  sed -i "s/<passphrase>password<\/passphrase>/<passphrase>$WEB_PASSWORD<\/passphrase>/" /opt/fs22/xml/default_dedicatedServer.xml
+  sed -i "s/<passphrase>password<\/passphrase>/<passphrase>$WEB_PASSWORD<\/passphrase>/" /opt/fs25/xml/default_dedicatedServer.xml
 fi
 
 EOF
@@ -47,5 +47,5 @@ rm /tmp/envvars_heredoc
 
 # Symlinks
 
-ln -s /opt/fs22/setup_giants.sh /home/nobody/setup_giants.sh
-ln -s /opt/fs22/start_webserver.sh /home/nobody/start_webserver.sh
+ln -s /opt/fs25/setup_giants.sh /home/nobody/setup_giants.sh
+ln -s /opt/fs25/start_webserver.sh /home/nobody/start_webserver.sh

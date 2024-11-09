@@ -10,9 +10,10 @@
         <language>en</language>
         <auto_save_interval>180.000000</auto_save_interval>
         <stats_interval>45.000000</stats_interval>
-        <use_upnp>false</use_upnp>
         <crossplay_allowed>true</crossplay_allowed>
-        <difficulty>3</difficulty>
+        <initialMoney>500000</initialMoney>
+        <initialLoan>0</initialLoan>
+        <economicDifficulty>2</economicDifficulty>
         <pause_game_if_empty>2</pause_game_if_empty>
         <mapID>MapUS</mapID>
         <mapFilename>default</mapFilename>

@@ -14,7 +14,7 @@
             </intermediateCertificates>
         </tls>
     </webserver>
-    <game description="Farming Simulator 22" name="FarmingSimulator2022" exe="FarmingSimulator2022Game.exe">
+    <game description="Farming Simulator 25" name="FarmingSimulator2025" exe="FarmingSimulator2025Game.exe">
         <imprint active="false"><![CDATA[
             <b>Sample Imprint Title</b><br>
             <br>

@@ -1,6 +1,6 @@
 services:
   gameserver:
-    image: ghcr.io/toast-ts/farmsim-docker:master
+    image: ghcr.io/toast-ts/farmsim-docker:fs25
     container_name: fs25-server
     restart: unless-stopped
     environment:

@@ -1,4 +1,4 @@
-FROM toetje585/arch-wine-vnc:latest
+FROM farmsim-docker-vnc:latest
 LABEL org.opencontainers.image.source="https://github.com/toast-ts/farmsim-docker"
 
 COPY build/rootfs /
