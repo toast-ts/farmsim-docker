@@ -1,6 +1,6 @@
 # Host directory for the game stuff
-fs22
-fs25
+/fs22
+/fs25
 
 # Local version of GitHub Actions
 act

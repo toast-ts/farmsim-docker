@@ -1,10 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Setup
+Name=​
 Comment=Run setup
-Icon=/home/nobody/icons/icon0.jpg
+Icon=/home/nobody/icons/setup.png
 Exec=lxterminal --command="/bin/bash -c '/opt/fs25/setup_giants.sh'"
 Terminal=false
 Type=Application
-Name[en_US]=Setup
-Comment[en_US]=Run setup
