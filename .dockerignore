@@ -1,0 +1,12 @@
+.github
+/fs22
+/fs25
+/vnc-image
+.gitignore
+/act
+*.sh
+Dockerfile
+*.yml
+LICENSE
+README.md
+/*.txt

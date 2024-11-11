@@ -5,7 +5,7 @@ set -e
 # needed packages
 
 echo "[info] Installing packages currently not installed..."
-pacman -Syu --noconfirm && pacman -S tinyproxy --noconfirm
+pacman -S tinyproxy --noconfirm
 
 # Double check if it's installed, because sometimes
 # it doesn't even install properly the first time
@@ -15,6 +15,7 @@ if ! pacman -Qi tinyproxy &>/dev/null; then
   pacman -S tinyproxy --noconfirm
 else
   echo "[info] Tinyproxy is already installed, skipping..."
+  pacman -Scc --noconfirm && rm -rf /var/cache/pacman/pkg/*
 fi
 
 # create file with contents of here doc, note EOF is NOT quoted to allow us to expand current variable 'install_paths'

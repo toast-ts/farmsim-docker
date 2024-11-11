@@ -7,3 +7,5 @@ act
 
 # My copy of docker-compose so I don't have to accidentally commit the changes
 compose.farmsim.yml
+
+/*.txt

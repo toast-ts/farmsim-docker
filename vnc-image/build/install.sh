@@ -23,37 +23,63 @@ echo -e " \n\
 Include = /etc/pacman.d/mirrorlist \n\
 " >> /etc/pacman.conf
 
+echo "[info] Fixing filesystem permissions..."
+chmod 755 /etc /usr
+
 # initialise key for pacman
 
 pacman-key --init
 
-echo "[info] Updating packages database..."
-pacman -Sy --noconfirm
+DEPENDENCIES=(
+  # X11 and VNC
+  xorg-server-xvfb
+  x11vnc
 
-echo "[info] Updating packages currently installed..."
-pacman -Syu --noconfirm
+  # Window Manager
+  icewm
+  pcmanfm
 
-# needed packages
+  # Essentials
+  supervisor
+  moreutils
+  ttf-dejavu
+  wine-staging
+)
+PACKAGE_LIST="${DEPENDENCIES[*]}"
 
 echo "[info] Installing packages currently not installed..."
-pacman -S xorg-server-xvfb x11vnc supervisor wine moreutils lxde --noconfirm
+pacman -Syu --noconfirm && \
+pacman -S ${PACKAGE_LIST} --noconfirm && \
+pacman -Rns $(pacman -Qdtq) --noconfirm && \
+pacman -Scc --noconfirm
 
 # add user "nobody" to primary group "users" (will remove any other group membership)
-usermod -g users nobody
+usermod -g users nobody && \
 
 # add user "nobody" to secondary group "nobody" (will retain primary membership)
-usermod -a -G nobody nobody
+usermod -aG nobody nobody && \
 
 # setup env for user nobody
-mkdir -p '/home/nobody'
-chown -R nobody:users '/home/nobody'
-chmod -R 775 '/home/nobody'
+mkdir -p /home/nobody/Templates && \
+chown -R nobody:users /home/nobody && \
+chmod -R 775 /home/nobody && \
 
 # set user "nobody" home directory (needs defining for pycharm, and possibly other apps)
-usermod -d /home/nobody nobody
+usermod -d /home/nobody nobody && \
 
 # set shell for user nobody
 chsh -s /bin/bash nobody
+
+# link .icewm to /usr/share/icewm
+if [ -f /usr/share/icewm/preferences ] || [ -d /home/nobody/.icewm/preferences ]; then
+  rm -rf /usr/share/icewm/preferences && \
+  ln -sf /home/nobody/.icewm/preferences /usr/share/icewm/preferences
+fi
+
+# remove existing themes except default
+for theme in $(ls /usr/share/icewm/themes | grep -v win95); do
+  rm -rf /usr/share/icewm/themes/$theme
+done
 
 # container perms
 ####
@@ -129,3 +155,14 @@ sed -i '/# ENVVARS_COMMON_PLACEHOLDER/{
     r /tmp/envvars_heredoc
 }' /usr/local/bin/init.sh
 rm /tmp/envvars_heredoc
+
+# clean up unnecessary files to cut Docker image size down (3447 MB before adding this)
+rm -rf /var/cache/pacman/{pkg,sync}/* && \
+rm -rf /tmp/* && \
+rm -rf /var/tmp/* && \
+rm -rf /usr/share/{man,doc}/* && \
+rm -rf /root/.cache && \
+rm -rf /home/nobody/.cache && \
+find /usr/lib -type f -name '*.a' -delete && \
+find /usr/lib -type f -name '*.la' -delete && \
+find /usr/share/applications -type f -delete

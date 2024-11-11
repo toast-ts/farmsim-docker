@@ -15,7 +15,7 @@ else
 fi
 
 # set user nobody to specified user id (non unique)
-usermod -o -u "${PUID}" nobody &>/dev/null
+usermod -ou "${PUID}" nobody &>/dev/null
 
 export PGID=$(echo "${PGID}" | sed -e 's~^[ \t]*~~;s~[ \t]*$~~')
 if [[ ! -z "${PGID}" ]]; then
@@ -26,7 +26,7 @@ else
 fi
 
 # set group users to specified group id (non unique)
-groupmod -o -g "${PGID}" users &>/dev/null
+groupmod -og "${PGID}" users &>/dev/null
 
 # ENVVARS_COMMON_PLACEHOLDER
 
