@@ -18,6 +18,10 @@ We will be using `/opt/fs25` as the default path.
 5. Start the container after configuring your [docker-compose.yml](./docker-compose.yml) file
    - `$ docker compose up -d`
    - You may need to append `sudo` in front if the user is not part of the Docker group.
+6. Connect to the container via port `5900` in your VNC client
+
+>[!IMPORTANT]
+You may need to delete the `dedicatedServer.xml` file that it generated on first launch and restart the panel.
 
 # Reason for the fork
 
