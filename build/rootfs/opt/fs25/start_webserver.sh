@@ -15,7 +15,6 @@ NOCOLOR='\033[0;0m'
 wine wineboot
 
 # Define the game installation directories on both the host and wine side
-FARMSIM_INSTALL_HOST="/opt/fs25/game"
 FARMSIM_INSTALL_WINE="$WINEPREFIX/drive_c/Program Files (x86)/Farming Simulator 2025"
 FARMSIM_DOCS_HOST="/opt/fs25/docs"
 FARMSIM_DOCS_WINE_PARENT="$WINEPREFIX/drive_c/users/$USER/Documents/My Games"
@@ -27,14 +26,6 @@ HOST_LOGFOLDER="/opt/fs25/logs"
 # Clear Tinyproxy log prior to starting the webinterface
 echo -e "${GREEN}INFO: Clearing Tinyproxy log..${NOCOLOR}"
 echo "" > $HOST_LOGFOLDER/tinyproxy.log
-
-# Check if the game install directory exists on the host side
-if [ -d "$FARMSIM_INSTALL_HOST" ]; then
-  ln -s "$FARMSIM_INSTALL_HOST" "$FARMSIM_INSTALL_WINE"
-else
-  echo -e "${RED}Error: Game installation directory does not exist on the host side, unable to create the symlink!${NOCOLOR}"
-  exit 1
-fi
 
 # Symlink the game profile directory
 if [ -d "$FARMSIM_DOCS_WINE" ]; then

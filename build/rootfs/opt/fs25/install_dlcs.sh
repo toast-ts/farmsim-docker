@@ -22,8 +22,6 @@ RED='\033[0;31m'
 
 # Create a clean 64bit Wineprefix
 if [ -d ~/.fs_server ]; then
-  rm -r ~/.fs_server && wine wineboot
-else
   wine wineboot
 fi
 

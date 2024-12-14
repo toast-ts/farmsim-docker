@@ -12,7 +12,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /opt/fs25/docs:/opt/fs25/docs
-      - /opt/fs25/game:/opt/fs25/game
+      - '/opt/fs25/game:/home/nobody/.fs_server/drive_c/Program Files (x86)/Farming Simulator 2025'
       - /opt/fs25/dlc:/opt/fs25/dlc
       - /opt/fs25/install:/opt/fs25/install
       - /opt/fs25/logs:/opt/fs25/logs
